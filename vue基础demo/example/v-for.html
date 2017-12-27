@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HelloWorld</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>v-for</h1>
+    <hr>
+    <div id="app">
+        <ul>
+            <li v-for="item in newitems">{{item}}</li>
+        </ul>
+        <hr>
+        <h2>按照年龄排序</h2>
+        <ul>
+            <li v-for="(student,index) in sortstudents">
+                {{index+1}}-{{student.name}}-{{student.age}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var app=new Vue({
+            el: "#app",
+            data: {
+                items: [1,2,3,45,32,10],
+                students:[
+                    {name:'Jack',age: 20},
+                    {name: 'Panda',age: 18},
+                    {name: 'Daxiong',age: 14},
+                    {name: 'Luo',age: 12}
+                ]
+            },
+            computed:{
+                newitems: function(){
+                    return this.items.sort(function(a,b){
+                        return a-b;
+                    });
+                },
+                sortstudents: function(){
+                    return this.students.sort(function(a,b){
+                        return a['age']-b['age'];
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
