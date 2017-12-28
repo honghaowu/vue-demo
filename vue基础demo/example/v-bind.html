@@ -6,18 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>v-bind</title>
     <script src="../assets/js/vue.js"></script>
+    <style>
+        .classA{
+            color: red;
+        }
+        .classB{
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>v-bind 实例</h1>
     <hr>
     <div id="app">
-        {{message}}
+        <p>v-bind绑定a标签的href</p>
+        <a v-bind:href="baidu" class="">百度一下</a>
+        <hr>
+        <p>v-bind绑定标签的类名</p>
+        <p :class="{classA:isOk}">动态绑定类名</p>
+        <p :class="[classA,classB]">动态绑定类名</p>
+        <p :class="isOk?classA:classB">动态绑定类名</p>
+        <hr>
+        <p :style='{fontWeight: weight}' style="color: blue;">动态绑定style</p>
+        <p :style='styleObj' style="color: blue;">动态绑定style对象</p>
     </div>
     <script>
         var app=new Vue({
             el: "#app",
             data: {
-                message: "hello world"
+                baidu: "https://www.baidu.com/",
+                isOk: true,
+                classA: 'classA',
+                classB: 'classB',
+                weight: 'bold',
+                styleObj:{
+                    textShadow: '2px 2px 3px #666'
+                }
             }
         });
     </script>
