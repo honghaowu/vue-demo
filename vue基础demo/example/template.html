@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>template</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>template</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+    <!-- <template id="a">
+          <h1>我是第2种template写法</h1>
+    </template> -->
+    <script type="text/x-template" id="b">
+        <h3>第三种方法</h3>
+    </script>
+    <script>
+        /*template第一种写法
+        *template:`
+                <h1>我是第一种template写法</h1>
+            `
+            会把原来的el挂载的整个标签替换为template的标签
+
+          template第2种写法
+          html中写如下
+          <template id="a">
+            <h1>我是第2种template写法</h1>
+          </template>
+          配合vue选项中的：template: '#a'
+
+          template第3种写法
+        
+        */
+        
+
+        var app=new Vue({
+            el: "#app",
+            data: {
+                message: "hello world"
+            },
+            template: '#b'
+            // template:`
+            // //     <h1>我是第一种template写法</h1>
+            // `
+        });
+    </script>
+</body>
+</html>

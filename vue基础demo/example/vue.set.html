@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.set</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Vue.set</h1>
+    <hr>
+    <div id="app">
+       <p>{{count}}</p>
+       <ul>
+           <li v-for='item in arr'>{{item}}</li>
+       </ul>
+    </div>
+    <input type="button" value="add" onclick="add()"/>
+    <script>
+        var outData={
+            count: 1,
+            name: '豆豆',
+            arr:['a','b','c']
+        };
+        function add(){
+            //1-Vue.set( target, key, value)
+            // Vue.set(outData,'count',20);
+            // 2-
+            //app.count++;
+            // 3-outData++
+            //app.arr[1]='ddd'//vue没法监听到
+            Vue.set(app.arr,1,'d');//这样可以监听到
+
+        }
+        var app=new Vue({
+            el: "#app",
+            data: outData
+        });
+    </script>
+</body>
+</html>

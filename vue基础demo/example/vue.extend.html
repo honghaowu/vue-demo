@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.extend</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue.extend</h1>
+    <hr>
+    <!-- 扩展组建 -->
+    <div id="app">
+        <div id='author'></div>
+    </div>
+
+    <script>
+        var author = Vue.extend({
+            template: "<p><a :href='url'>{{name}}</a></p>",
+            data: function () {
+                return {
+                    name: 'Vue.js',
+                    url: 'https://cn.vuejs.org/'
+                }
+            }
+        });
+        //创建vue扩展的实例，并且挂在到元素上
+        new author().$mount('#author');
+        // var vm = new Vue({
+        //     el: '#app',
+        //     components: {
+        //         author: author
+        //     }
+        // });
+    </script>
+</body>
+
+</html>
