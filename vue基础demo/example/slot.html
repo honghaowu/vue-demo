@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>slot</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>slot 实例方法</h1>
+    <p>插槽，在子组件模板中slot标签包含，如果，子组件之间含有东西，则，替换子组件模板中的slot。</p>
+    <p>否则，子组件模板中的slot会作为默认的显示。</p>
+    <hr>
+    <div id="app">
+        <h2>父组件</h2>
+        <child>
+            <p slot='slotName'>我替代slotName</p>
+            <!-- <p>默认的slot</p> -->
+        </child>
+    </div>
+    <script>
+        var child={
+            template: `<div>
+            <p>我是子组件</p>
+            <slot name="slotName">我是子组件的slot,组件中没有东西时候，默认显示</slot>
+            <slot>我是子组件中默认的</slot>
+            </div>`
+        };
+        var app = new Vue({
+            el: "#app",
+            data: {
+                num: 1
+            },
+            components: {
+                "child": child
+            }
+        });
+    </script>
+</body>
+
+</html>

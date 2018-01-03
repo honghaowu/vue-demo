@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>example-2</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>example-2 实例方法</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+    <input type="button" value="销毁destroy" onclick="destroy()">
+    <input type="button" value="刷新" onclick="reload()">
+    <script>
+        /*实例方法
+        $mount()挂载vue到对应的DOM上，相当于el: '#app'
+        $destroy()销毁
+        $forceUpdate() 更新
+        $nextTick() 在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+        */
+        //创建一个Vue的扩展实例。
+        var panda = Vue.extend({
+            template: '<p>{{msg}}</p>',
+            data: function () {
+                return {
+                    msg: '使用$mount挂载vue'
+                }
+            },
+            mounted() {
+                console.log('mounted');
+            },
+            destroyed() {
+                console.log('destroyed...构造器已经销毁...');
+            },
+            updated() {
+                console.log('更新了...');
+            }
+        });
+        var vm = new panda().$mount('#app');
+        // 销毁
+        function destroy() {
+            vm.$destroy();
+        };
+        function reload() {
+            //更新方法
+            vm.$forceUpdate();
+        };
+
+        /*/ 修改数据
+        vm.msg = 'Hello'
+        // DOM 还没有更新
+        Vue.nextTick(function () {
+            // DOM 更新了
+        })
+
+        // 作为一个 Promise 使用 (2.1.0 起新增，详见接下来的提示)
+        Vue.nextTick()
+            .then(function () {
+                // DOM 更新了
+            })*/
+    </script>
+</body>
+
+</html>

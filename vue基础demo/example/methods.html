@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>methods</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>methods</h1>
+    <hr>
+    <div id="app">
+        <p>{{num}}</p>
+        <input type="button" value="add" @click='add(2,$event)'>
+        <!-- 组件标签的上面加构造器中的methods方法，需要用.native来修饰。 -->
+        <btn @click.native='add(2,$event)'></btn>
+    </div>
+    <!-- 外部使用vue中的方法 -->
+    <input type="button" value="add" onclick='app.add(2)'>
+    <script>
+        var btn={
+            template: '<button>btn组件</button>'
+        }
+        var app=new Vue({
+            el: "#app",
+            data: {
+                num: 1
+            },
+            components:{
+                "btn": btn
+            },
+            methods:{
+                //调用的时候add(num,$event);把事件对象$event放在最后。
+                add:function(num,e){
+                    this.num+=num;
+                    console.log(e);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

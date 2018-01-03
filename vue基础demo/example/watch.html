@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>watch</h1>
+    <hr>
+    <div id="app">
+        <p>温度：{{temperature}}</p>
+        <p>说明：{{todo}}</p>
+        <input type="button" value="升温" @click='add'>
+        <input type="button" value="降温" @click='reduce'>
+    </div>
+    <script>
+        var app=new Vue({
+            el: "#app",
+            data: {
+                temperature: 0,
+                todo: '温度较低'
+            },
+            methods:{
+                add(){
+                    this.temperature++;
+                },
+                reduce(){
+                    this.temperature--;
+                }
+            },
+            // watch来监听data中的温度变化
+            watch:{
+                // temperature(newVal,oldVal){
+                //     if(newVal>=10){
+                //         this.todo='温度适中';
+                //     }else if(newVal>0 && newVal<10){
+                //         this.todo='温度较低';
+                //     }else{
+                //         this.todo='温度过低';
+                //     }
+                // }
+            }
+        });
+        // 写在外面
+        app.$watch('temperature',function(newVal,oldVal){
+            if(newVal>=10){
+                        this.todo='温度适中';
+                    }else if(newVal>0 && newVal<10){
+                        this.todo='温度较低';
+                    }else{
+                        this.todo='温度过低';
+                    }
+        });
+    </script>
+</body>
+</html>

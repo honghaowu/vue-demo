@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>component</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>component</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+        <my-component></my-component>
+        <my></my>
+    </div>
+    <script>
+        // 全局的组件定义方法共2步骤,1 Vue.component(标签名，选项(含有template,data等)；2 直接在html中用);
+        Vue.component('my-component',{
+            template:'<h2>我是全局组建</h2>'
+        });
+        var app=new Vue({
+            el: "#app",
+            data: {
+                message: "hello world"
+            },
+            //局部的定义在vue构造函数的选项中，如下
+            components: {
+                'my':{
+                    template: '<h4>局部的组件</h4>'
+                }
+            }
+        });
+    </script>
+</body>
+</html>

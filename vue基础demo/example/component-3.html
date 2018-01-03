@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>component</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>component父子组建</h1>
+    <hr>
+    <div id="app">
+        <my></my>
+    </div>
+    <script>
+        var child={
+            template: '<h3>子组件</h3>'
+        };
+        var my={
+            template: "<div><h2>父组件</h2><child></child></div>",
+            components: {
+                'child': child
+            }
+        }
+        
+        var app=new Vue({
+            el: "#app",
+            data: {
+                message: "hello world"
+            },
+            //局部的定义在vue构造函数的选项中，如下,template中带-的要用驼峰
+            components: {
+                'my':my
+            }
+        });
+    </script>
+</body>
+</html>

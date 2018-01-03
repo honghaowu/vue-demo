@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>example-3</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>example-3 实例方法</h1>
+    <hr>
+    <div id="app">
+        <p>{{num}}</p>
+        <input type="button" value="add" @click='add'>
+    </div>
+    <!-- 在外面调用,方法要加括号。在vue挂载的DOM内部调用，如果没有参数，就不用加括号。 -->
+    <input type="button" value="reduce" onclick='reduce()'>
+    <br>
+    <input type="button" value="reduceOnce" onclick='reduceOnce()'>
+    <br>
+    <input type="button" value="off" onclick='off()'>
+    <script>
+        var btn = {
+            template: '<button>btn组件</button>'
+        }
+        var app = new Vue({
+            el: "#app",
+            data: {
+                num: 1
+            },
+            components: {
+                "btn": btn
+            },
+            methods: {
+                //调用的时候add(num,$event);把事件对象$event放在最后。
+                add: function () {
+                    this.num++;
+                }
+            }
+        });
+        //相当于绑定事件。外部调用的时候需要$emit触发
+        app.$on('reduce', function () {
+            console.log('执行了reduce...');
+            this.num--;
+        });
+        // 只调用一次
+        app.$once('reduceOnce', function () {
+            console.log('执行了reduce...');
+            this.num--;
+        });
+        function reduce(){
+            app.$emit('reduce');
+        };
+        function reduceOnce(){
+            app.$emit('reduceOnce');
+        };
+        // 关闭事件，相对于解绑了reduce事件。
+        function off(){
+            app.$off('reduce');
+        }
+    </script>
+</body>
+
+</html>

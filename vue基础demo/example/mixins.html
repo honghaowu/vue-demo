@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mixins</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>mixins</h1>
+    <hr>
+    <div id="app">
+        <p>{{num}}</p>
+        <input type="button" value="add" @click='add(2)'>
+    </div>
+    <script>
+        var addConsole={
+            updated(){
+                console.log('data更新...'+ this.num);
+            }
+        };
+        // 全局的混入,放在最后不执行。要放前面
+        Vue.mixin({
+            updated:function(){
+                console.log('全局...');
+            }
+        });
+        var app = new Vue({
+            el: "#app",
+            data: {
+                num: 1
+            },
+            methods: {
+                //调用的时候add(num,$event);把事件对象$event放在最后。
+                add: function (num) {
+                    this.num += num;
+                }
+            },
+            // 混入就是在尽可能不改变原来的vue对象的基础上，加上新的方法，这些方法可以公用的
+            mixins:[addConsole],
+            //混入的先于原生的执行。
+            updated(){
+                console.log('原生的...');
+            }
+        });
+        
+    </script>
+</body>
+
+</html>
