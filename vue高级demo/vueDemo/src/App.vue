@@ -1,0 +1,30 @@
+<template>
+  <div id="app">
+    <img src="./assets/logo.png">
+    <div>
+      <router-link to='/index'>首页</router-link>
+      <router-link to='/page'>详情页</router-link>
+      <router-link to='/new/12/good morning'>路由参数</router-link>
+    </div>
+    <router-view/>
+    <router-view name="a"></router-view>
+    <router-view name="b"></router-view>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'app'
+}
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
