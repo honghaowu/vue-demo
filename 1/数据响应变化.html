@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数据响应变化</title>
+</head>
+<body>
+	<div id="app">{{msg.a}}</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+		el: '#app',// 挂在到哪个元素，el即element,用的是querySelector
+		data: {// data会被vm代理，vm.$data.msg="haha";  vm.msg='hehe',都可以改变
+            msg: {
+                a: ''
+       	 }
+		}
+    });
+</script>
+
+</body>
+</html>

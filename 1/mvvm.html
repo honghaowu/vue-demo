@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div id="app">
+	<input type="text" v-model="msg" id="input" value="">
+	<p id="p">{{msg}}</p>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+//    let vm = new Vue({
+//        el: '#app',// 挂在到哪个元素，el即element,用的是querySelector
+//        data:{// data会被vm代理，vm.$data.msg="haha";  vm.msg='hehe',都可以改变
+//            msg: 'hello world'
+//        }
+//    });
+	var obj={};
+	var temp={};
+	Object.defineProperty(obj,'msg',{
+	    get(){
+	        return temp['msg'];
+		},
+		set(val){
+	        temp['msg']=val;
+		}
+	})
+	let input =  document.getElementById('input');
+	let p=document.getElementById('p');
+	input.value=p.innerHTML=obj['msg'];
+	input.addEventListener('input',function () {
+		obj['msg']=this.value;
+		p.innerHTML=obj['msg'];
+    },false)
+</script>
+</body>
+</html>

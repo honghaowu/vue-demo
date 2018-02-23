@@ -1,0 +1,47 @@
+1 v-model绑定表单
+如果checkbox为一个，则被选中时候，v-model的值为true，未选中为false;两者联动的。
+如果是多个
+<input type="checkbox" v-model="b" value="item1">item1
+<input type="checkbox" v-model="b" value="item2">item2
+<input type="checkbox" v-model="b" value="item3">item3
+
+如果是多个checkbox的时候，需要每个都加上v-model，然后每个都加上value属性，v-model对应的变量是选中的那些checkbox的value组成的数组。
+
+radio 是v-model对应选中的value.
+select 如果下面的option是没有value属性，则v-model对应option中间的值，
+如果有value，则对应value.
+如果是多选，则返回选中的数组。
+
+2 axios
+ created(){
+     //axios的get，注意this存下，或者axios里面用箭头函数
+    var  _this=this;
+     axios.get(url).then(function(res){ //成功的回调
+        console.log(res.data);
+     },function(err){ //失败的回调
+        console.log(err);
+     });
+ }
+ 专门用来发送ajax请求的。
+
+3 promise解决异步编程的回调地狱问题
+https://segmentfault.com/a/1190000007678185
+promise 三种状态：
+Pending  初始状态
+fulfilled   成功
+rejected  失败
+promise 创建对象，就会执行里面的函数。
+let p=new Promise((resolve,reject)=>{
+	if(//成功){
+	   resolve('nihao');// 把nihao传递到then中第一个回调函数的参数中
+	}else{
+		reject('失败');// 把"失败"传递到then中第二个回调函数的参数中。
+	}
+});
+p.then((data)=>{
+	console.log(data);//  data就是nihao
+},(err)=>{
+     console.log(err);// err就对应失败
+});
+then中有两个函数作为参数，第一个是成功的回调函数，resolve会调用第一个参数，并将resolve的参数传递过来。
+第二个参数是失败的回调函数。对应的是reject.
