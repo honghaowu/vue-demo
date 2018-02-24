@@ -64,11 +64,13 @@ vm.arr= vm.arr.map(x=>x*3);//map filter是生成的新数组，所以要替换�
 
 ## 6 事件
 原生的要加上();  
- <div onclick='fn()'></div>  
- vue的如果没有参数，不用加，如果要用事件对象，$event推荐放在最后一个参数
- ```
- <div v-on: click="fn"></div>
- <div @click="fn(a,$event)"></div>
- ```
-  methods中的this都指向vue实例，不用箭头函数，否则this变成window了。   
+```
+<div onclick='fn()'></div>  
+```
+vue的如果没有参数，不用加，如果要用事件对象，$event推荐放在最后一个参数  
+```
+<div v-on: click="fn"></div>  
+<div @click="fn(a,$event)"></div> 
+```
+methods中的this都指向vue实例，不用箭头函数，否则this变成window了。   
 @keyup.enter: enter是修饰符，当按下enter时候执行  
