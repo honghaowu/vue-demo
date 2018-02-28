@@ -3,7 +3,7 @@ function bar() {
     if(!foo){
         var foo=10;
     }
-    console.log(bar);
+    console.log(foo);
 }
 bar();
 /***
